@@ -22,10 +22,13 @@ class ViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         searchCompleter.delegate = self
+        searchCompleter.resultTypes = .address //地図上の位置のみ検索する
+//        searchCompleter.resultTypes = .pointOfInterest //
+//        searchCompleter.resultTypes = .query //
     }
     
     @IBAction private func textFieldEditingChanged(_ sender: Any) {
-        // あとで
+        //
         searchCompleter.queryFragment = textField.text!
     }
 }
@@ -38,7 +41,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        // あとで
+        //
         let completion = searchCompleter.results[indexPath.row]
                 cell.textLabel?.text = completion.title
                 cell.detailTextLabel?.text = completion.subtitle
