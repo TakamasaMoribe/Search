@@ -22,6 +22,13 @@ class ViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         searchCompleter.delegate = self
+
+        // 東京駅を中心にして検索する
+        let tokyoStation = CLLocationCoordinate2DMake(35.6811673, 139.7670516) // 東京駅
+        let span = MKCoordinateSpan(latitudeDelta: 0.001, longitudeDelta: 0.001) // ここは適当な値です
+        let region = MKCoordinateRegion(center: tokyoStation, span: span)
+        searchCompleter.region = region
+        
         searchCompleter.resultTypes = .address //地図上の位置のみ検索する
 //        searchCompleter.resultTypes = .pointOfInterest //
 //        searchCompleter.resultTypes = .query //
