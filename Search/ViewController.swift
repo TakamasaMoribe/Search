@@ -15,13 +15,29 @@ class ViewController: UIViewController,UISearchBarDelegate {
     
     @IBOutlet private weak var tableView: UITableView!
 
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        //キーボードを閉じる
         view.endEditing(true)
         if let searchWord = searchBar.text {
             print(searchWord)
+        //入力されていたら、地名を検索する
+            searchPlace(keyword: searchWord)
         }
     }
-    
+  
+    //searchPlace メソッド
+    // 第一引数：keyword 検索したい語句
+    func searchPlace(keyword:String) {
+        // keyword をurlエンコードする
+        guard let keyword_encode = keyword.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
+            return
+        }
+        // リクエストurlの組み立て
+        guard let req_url = URL(string: "https://geocode.csis.u-tokyo.ac.jp/cgi-bin/simple_geocode.cgi?addr=\(keyword_encode)") else {
+            return
+        }
+        print(req_url)//入力されていたら、urlを表示する
+    }
     
     //private var searchCompleter = MKLocalSearchCompleter()
     
@@ -30,9 +46,10 @@ class ViewController: UIViewController,UISearchBarDelegate {
         
         searchText.delegate = self
         searchText.placeholder = "検索する地名を入力"
-        
-        
+                
     }
+    
+    
 // --------------------------------------
 //        tableView.delegate = self
 //        tableView.dataSource = self
