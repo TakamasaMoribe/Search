@@ -12,8 +12,8 @@ import MapKit
 class ViewController: UIViewController,UISearchBarDelegate {
     
     @IBOutlet weak var searchText: UISearchBar!
-    
     @IBOutlet private weak var tableView: UITableView!
+    
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         //キーボードを閉じる
@@ -40,6 +40,7 @@ class ViewController: UIViewController,UISearchBarDelegate {
     }
     
     //private var searchCompleter = MKLocalSearchCompleter()
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +49,7 @@ class ViewController: UIViewController,UISearchBarDelegate {
         searchText.placeholder = "検索する地名を入力"
                 
     }
+    
     
     
 // --------------------------------------
